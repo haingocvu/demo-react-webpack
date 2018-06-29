@@ -3,9 +3,6 @@ let webpack = require('webpack');
 let htmlWebpackPlugin = require('html-webpack-plugin');
 
 const devServer = {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 2222,
     open: true
 }
 
