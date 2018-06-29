@@ -1,0 +1,36 @@
+{
+    "name": "demo-react-webpack",
+    "version": "1.0.0",
+    "description": "demo react webpack",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/haingocvu/demo-react-webpack.git"
+    },
+    "keywords": [
+        "webpack",
+        "react"
+    ],
+    "author": "haingocvu@hotmail.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/haingocvu/demo-react-webpack/issues"
+    },
+    "homepage": "https://github.com/haingocvu/demo-react-webpack#readme",
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "css-loader": "^0.28.11",
+        "style-loader": "^0.21.0",
+        "webpack": "^4.13.0"
+    },
+    "dependencies": {
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1"
+    }
+}
