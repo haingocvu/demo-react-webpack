@@ -1,5 +1,6 @@
 let path = require('path');
 let webpack = require('webpack');
+let htmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
     mode: 'development',
@@ -36,6 +37,9 @@ const config = {
             'jQuery': 'jquery',
             'window.$': 'jquery',
             'window.jQuery': 'jquery'
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/index.html'
         })
     ],
     optimization: {
