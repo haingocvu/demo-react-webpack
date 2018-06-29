@@ -9,9 +9,6 @@
 # production
 /build
 
-# webpack bundle
-/dist
-
 # misc
 .DS_Store
 .env.local
