@@ -1,0 +1,1 @@
+export const HOSTNAME = 'https://5b30fe687ad3350014b43369.mockapi.io/api';

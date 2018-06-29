@@ -1,4 +1,5 @@
 let path = require('path');
+let webpack = require('webpack');
 
 const config = {
     mode: 'development',
@@ -22,9 +23,21 @@ const config = {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.jpeg$|\.jpg$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.eot$|\.ttf|\.wav$|\.mp3$|\.ico$/,
+                use: 'file-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery',
+            'window.$': 'jquery',
+            'window.jQuery': 'jquery'
+        })
+    ]
 }
 
 module.exports = config;
