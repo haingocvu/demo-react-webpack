@@ -1,14 +1,29 @@
 let path = require('path');
 let webpack = require('webpack');
 
+const VENDOR_LIBS = [
+    'axios',
+    'bootstrap',
+    'jquery',
+    'lodash',
+    'react',
+    'react-dom',
+    'react-redux',
+    'react-router-dom',
+    'redux',
+    'redux-thunk'
+]
+
 const config = {
     mode: 'development',
     entry: {
-        bundle: './src/index.js'
+        bundle: './src/index.js',
+        //bundle caching
+        vendor: VENDOR_LIBS
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     module: {
         rules: [
