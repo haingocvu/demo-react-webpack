@@ -4,9 +4,9 @@
     "description": "demo react webpack",
     "main": "index.js",
     "scripts": {
+        "start": "webpack-dev-server",
         "clean": "rimraf dist",
-        "build": "npm run clean && webpack",
-        "serve": "webpack-dev-server"
+        "build": "npm run clean && webpack"
     },
     "repository": {
         "type": "git",
