@@ -1,25 +1,10 @@
 let path = require('path');
 let webpack = require('webpack');
 
-const VENDOR_LIBS = [
-    'axios',
-    'bootstrap',
-    'jquery',
-    'lodash',
-    'react',
-    'react-dom',
-    'react-redux',
-    'react-router-dom',
-    'redux',
-    'redux-thunk'
-]
-
 const config = {
     mode: 'development',
     entry: {
-        bundle: './src/index.js',
-        //bundle caching
-        vendor: VENDOR_LIBS
+        bundle: './src/index.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -52,7 +37,18 @@ const config = {
             'window.$': 'jquery',
             'window.jQuery': 'jquery'
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    }
 }
 
 module.exports = config;
