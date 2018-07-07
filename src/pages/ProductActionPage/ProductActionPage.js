@@ -17,30 +17,59 @@ class ProductActionPage extends Component {
     componentDidMount() {
         let { match } = this.props;
         if (match) {
+            console.log('load editing');
             let { id } = match.params;
             //get product info when edit product
             this.props.onGetProduct(id);
+        } else {
+            console.log('load adding');
+            let { addingItem } = this.props;
+            this.setState({
+                id: addingItem.id,
+                name: addingItem.name,
+                price: addingItem.price,
+                status: addingItem.status
+            })
         }
     }
 
-    componentWillReceiveProps(nextProp) {
-        if (nextProp && nextProp.editingItem) {
-            let { editingItem } = nextProp;
+    componentWillReceiveProps(nextProps) {
+        //console.log(nextProps);
+        console.log('receive prop');
+        if (nextProps && nextProps.editingItem.id) {
+            console.log('jump to edit');
+            let { editingItem } = nextProps;
             this.setState({
                 id: editingItem.id,
                 name: editingItem.name,
                 price: editingItem.price,
                 status: editingItem.status
             })
+        } else if (nextProps && nextProps.addingItem) {
+            console.log('jump to add');
+            let { addingItem } = nextProps;
+            this.setState({
+                id: addingItem.id,
+                name: addingItem.name,
+                price: addingItem.price,
+                status: addingItem.status
+            })
         }
     }
 
     handleChange = event => {
+        let { onSaveCurrentAddingProduct } = this.props;
         let target = event.target;
         let name = target.name;
         let value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({
             [name]: value
+        }, () => {
+            if (!this.state.id) {
+                console.log('saving addding');
+                onSaveCurrentAddingProduct(this.state)
+                //console.log(this.state);
+            }
         })
     }
 
@@ -55,6 +84,7 @@ class ProductActionPage extends Component {
                 history.goBack();
             } else {//otherwise add product to backend
                 this.props.onAddProduct(this.state);
+                this.props.onClearAddingProduct();
                 history.goBack();
             }
         }
@@ -65,7 +95,7 @@ class ProductActionPage extends Component {
         return (
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <form onSubmit={this.handleSubmit}>
-                    <legend>Add Product</legend>
+                    <legend>{this.state.id ? 'Editing Product' : 'Add Product'}</legend>
                     <div className="form-group">
                         <label>Name</label>
                         <input
@@ -114,7 +144,8 @@ class ProductActionPage extends Component {
 
 const mapStateToProp = state => {
     return {
-        editingItem: state.editingItem
+        editingItem: state.editingItem,
+        addingItem: state.productForm
     }
 }
 
@@ -128,6 +159,12 @@ const mapDispatchToProp = (dispatch, prop) => {
         },
         onUpdateProduct: product => {
             dispatch(Action.actUpdateProductRequest(product))
+        },
+        onSaveCurrentAddingProduct: product => {
+            dispatch(Action.actSaveCurrentAddingProduct(product))
+        },
+        onClearAddingProduct: () => {
+            dispatch(Action.actClearAddingProduct())
         }
     }
 }

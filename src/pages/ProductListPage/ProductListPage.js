@@ -8,8 +8,19 @@ import * as Action from "./../../actions/index";
 
 class ProductListPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.addProduct = this.addProduct.bind(this);
+    }
+
+
     componentDidMount() {
         this.props.onFetchProductsToReduxState();
+    }
+
+    addProduct() {
+        console.log('click add product');
+        this.props.onClearEditingProduct();
     }
 
     render() {
@@ -17,7 +28,11 @@ class ProductListPage extends Component {
         let { products } = this.props;
         return (
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <Link to="/product/add" className="btn btn-success mb-4">Add Product</Link>
+                <Link
+                    to="/product/add"
+                    className="btn btn-success mb-4"
+                    onClick={this.addProduct}
+                >Add Product</Link>
                 <ProductsList>
                     {this.showProductItem(products)}
                 </ProductsList>
@@ -55,6 +70,9 @@ const mapDispatchToProp = (dispatch, prop) => {
         },
         ondeleteProduct: id => {
             dispatch(Action.actDeleteProductRequest(id))
+        },
+        onClearEditingProduct: () => {
+            dispatch(Action.actClearEditingProduct())
         }
     }
 }

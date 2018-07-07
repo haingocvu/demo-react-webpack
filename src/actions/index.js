@@ -86,7 +86,27 @@ const actUpdateProductRequest = product => {
     }
 }
 
+const actSaveCurrentAddingProduct = product => {
+    return {
+        type: ActionType.SAVE_CURRENT_ADDING_PRODUCT,
+        product
+    }
+}
+
+const actClearEditingProduct = () => {
+    return {
+        type: ActionType.CLEAR_EDITING_PRODUCT
+    }
+}
+
+const actClearAddingProduct = () => {
+    return {
+        type: ActionType.CLEAR_ADDING_PRODUCT
+    }
+}
+
 export {
     actFetchProductRequest, actDeleteProductRequest,
-    actAddProductRequest, actGetProductRequest, actUpdateProductRequest
+    actAddProductRequest, actGetProductRequest, actUpdateProductRequest,
+    actSaveCurrentAddingProduct, actClearEditingProduct, actClearAddingProduct
 };

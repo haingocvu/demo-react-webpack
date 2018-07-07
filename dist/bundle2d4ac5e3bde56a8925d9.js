@@ -236,6 +236,18 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 
 /***/ }),
 
+/***/ "./src/config/configureStore.js":
+/*!**************************************!*\
+  !*** ./src/config/configureStore.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.persistedStore = exports.store = undefined;\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\nvar _reduxThunk = __webpack_require__(/*! redux-thunk */ \"./node_modules/redux-thunk/es/index.js\");\n\nvar _reduxPersist = __webpack_require__(/*! redux-persist */ \"./node_modules/redux-persist/es/index.js\");\n\nvar _storage = __webpack_require__(/*! redux-persist/lib/storage */ \"./node_modules/redux-persist/lib/storage/index.js\");\n\nvar _index = __webpack_require__(/*! ./../reducers/index */ \"./src/reducers/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar persisConfig = {\n    key: 'root',\n    storage: _storage.storage\n};\n\nvar persistedReducer = (0, _reduxPersist.persistReducer)(persisConfig, _index2.default);\n\nvar store = (0, _redux.createStore)(persistedReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), (0, _redux.applyMiddleware)(_reduxThunk.thunk));\n\nvar persistedStore = (0, _reduxPersist.persistStore)(store);\n\nexports.store = store;\nexports.persistedStore = persistedStore;\n\n//# sourceURL=webpack:///./src/config/configureStore.js?");
+
+/***/ }),
+
 /***/ "./src/constants/ActionType.js":
 /*!*************************************!*\
   !*** ./src/constants/ActionType.js ***!
@@ -280,7 +292,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _App = __webpack_require__(/*! ./components/App/App */ \"./src/components/App/App.js\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\nvar _index = __webpack_require__(/*! ./reducers/index */ \"./src/reducers/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nvar _reduxThunk = __webpack_require__(/*! redux-thunk */ \"./node_modules/redux-thunk/es/index.js\");\n\nvar _reduxThunk2 = _interopRequireDefault(_reduxThunk);\n\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n\n__webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\n__webpack_require__(/*! bootstrap/dist/js/bootstrap.js */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar store = (0, _redux.createStore)(_index2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), (0, _redux.applyMiddleware)(_reduxThunk2.default));\n\n_reactDom2.default.render(_react2.default.createElement(\n    _reactRedux.Provider,\n    { store: store },\n    _react2.default.createElement(_App2.default, null)\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _App = __webpack_require__(/*! ./components/App/App */ \"./src/components/App/App.js\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _configureStore = __webpack_require__(/*! ./config/configureStore */ \"./src/config/configureStore.js\");\n\nvar _react3 = __webpack_require__(/*! redux-persist/integration/react */ \"./node_modules/redux-persist/es/integration/react.js\");\n\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n\n__webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\n__webpack_require__(/*! bootstrap/dist/js/bootstrap.js */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(\n    _reactRedux.Provider,\n    { store: _configureStore.store },\n    _react2.default.createElement(\n        _react3.PersistGate,\n        { loading: null, persistor: _configureStore.persistedStore },\n        _react2.default.createElement(_App2.default, null)\n    )\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
