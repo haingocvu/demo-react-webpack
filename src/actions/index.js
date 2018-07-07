@@ -53,19 +53,26 @@ const actAddProductRequest = product => {
     }
 }
 
-const actGetProductRequest = id => {
-    return dispatch => {
-        callAPI('GET', `${Endpoints.PRODUCTS}/${id}`, null)
-            .then(res => {
-                dispatch(actSetEditingProductToStore(res.data))
-            }).catch(err => console.log(err))
-    }
-}
+// const actGetProductRequest = id => {
+//     return dispatch => {
+//         callAPI('GET', `${Endpoints.PRODUCTS}/${id}`, null)
+//             .then(res => {
+//                 dispatch(actSetEditingProductToStore(res.data))
+//             }).catch(err => console.log(err))
+//     }
+// }
 
-const actSetEditingProductToStore = product => {
+// const actSetEditingProductToStore = product => {
+//     return {
+//         type: ActionType.SET_EDITING_PRODUCT,
+//         product
+//     }
+// }
+
+const actSetEditingProductAsyn = id => {
     return {
-        type: ActionType.SET_EDITING_PRODUCT,
-        product
+        type: ActionType.SET_EDITING_PRODUCT_ASYN,
+        id
     }
 }
 
@@ -107,6 +114,7 @@ const actClearAddingProduct = () => {
 
 export {
     actFetchProductRequest, actDeleteProductRequest,
-    actAddProductRequest, actGetProductRequest, actUpdateProductRequest,
-    actSaveCurrentAddingProduct, actClearEditingProduct, actClearAddingProduct
+    actAddProductRequest, actUpdateProductRequest,
+    actSaveCurrentAddingProduct, actClearEditingProduct, actClearAddingProduct,
+    actSetEditingProductAsyn
 };

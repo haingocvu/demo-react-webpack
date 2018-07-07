@@ -12,7 +12,7 @@ const devServer = {
 const config = {
     mode: 'development',
     entry: {
-        bundle: './src/index.js'
+        bundle: ['babel-polyfill', './src/index.js']
     },
     output: {
         path: path.join(__dirname, 'dist'),

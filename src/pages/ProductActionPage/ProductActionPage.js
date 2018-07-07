@@ -155,7 +155,7 @@ const mapDispatchToProp = (dispatch, prop) => {
             dispatch(Action.actAddProductRequest(product))
         },
         onGetProduct: id => {
-            dispatch(Action.actGetProductRequest(id))
+            dispatch(Action.actSetEditingProductAsyn(id))
         },
         onUpdateProduct: product => {
             dispatch(Action.actUpdateProductRequest(product))
