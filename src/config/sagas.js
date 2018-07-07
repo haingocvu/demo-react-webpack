@@ -11,12 +11,29 @@ function* getProductAsyn(id) {
     })
 }
 
+function* fetchProductsAsyn() {
+    try {
+        let rs = yield call(callAPI, 'GET', `${Endpoints.PRODUCTS}`, null);
+        yield put({
+            type: ActionType.SET_LIST_PRODUCTS,
+            products: rs.data
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function* watchFetchProductsAsyn() {
+    yield takeEvery('FETCH_PRODUCTS_ASYN', fetchProductsAsyn)
+}
+
 function* watchGetProductAsyn() {
     yield takeEvery('SET_EDITING_PRODUCT_ASYN', getProductAsyn)
 }
 
 export default function* rootSaga() {
     yield all([
-        watchGetProductAsyn()
+        watchGetProductAsyn(),
+        watchFetchProductsAsyn()
     ])
 }

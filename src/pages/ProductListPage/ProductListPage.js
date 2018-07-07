@@ -15,7 +15,7 @@ class ProductListPage extends Component {
 
 
     componentDidMount() {
-        this.props.onFetchProductsToReduxState();
+        this.props.onFetchProductsAsyn();
     }
 
     addProduct() {
@@ -65,8 +65,8 @@ const mapStateToProp = state => {
 
 const mapDispatchToProp = (dispatch, prop) => {
     return {
-        onFetchProductsToReduxState: () => {
-            dispatch(Action.actFetchProductRequest())
+        onFetchProductsAsyn: () => {
+            dispatch(Action.actFetchProductsAsyn())
         },
         ondeleteProduct: id => {
             dispatch(Action.actDeleteProductRequest(id))

@@ -2,20 +2,9 @@ import * as ActionType from "./../constants/ActionType";
 import callAPI from "../utils/apiCaller";
 import * as Endpoints from "./../constants/endpoints";
 
-const actFetchProduct = products => {
+const actFetchProductsAsyn = () => {
     return {
-        type: ActionType.FETCH_PRODUCTS,
-        products
-    }
-}
-
-const actFetchProductRequest = () => {
-    return dispatch => {
-        return callAPI('GET', `${Endpoints.PRODUCTS}`, null)
-            .then(res => {
-                dispatch(actFetchProduct(res.data))
-            })
-            .catch(err => console.log(err))
+        type: ActionType.FETCH_PRODUCTS_ASYN
     }
 }
 
@@ -113,8 +102,8 @@ const actClearAddingProduct = () => {
 }
 
 export {
-    actFetchProductRequest, actDeleteProductRequest,
+    actDeleteProductRequest,
     actAddProductRequest, actUpdateProductRequest,
     actSaveCurrentAddingProduct, actClearEditingProduct, actClearAddingProduct,
-    actSetEditingProductAsyn
+    actSetEditingProductAsyn, actFetchProductsAsyn
 };
