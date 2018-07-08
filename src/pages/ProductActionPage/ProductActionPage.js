@@ -152,13 +152,13 @@ const mapStateToProp = state => {
 const mapDispatchToProp = (dispatch, prop) => {
     return {
         onAddProduct: product => {
-            dispatch(Action.actAddProductRequest(product))
+            dispatch(Action.actAddProductAsyn(product))
         },
         onGetProduct: id => {
             dispatch(Action.actSetEditingProductAsyn(id))
         },
         onUpdateProduct: product => {
-            dispatch(Action.actUpdateProductRequest(product))
+            dispatch(Action.actUpdateProductAsyn(product))
         },
         onSaveCurrentAddingProduct: product => {
             dispatch(Action.actSaveCurrentAddingProduct(product))

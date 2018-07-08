@@ -69,7 +69,7 @@ const mapDispatchToProp = (dispatch, prop) => {
             dispatch(Action.actFetchProductsAsyn())
         },
         ondeleteProduct: id => {
-            dispatch(Action.actDeleteProductRequest(id))
+            dispatch(Action.actDeleteProductAsyn(id))
         },
         onClearEditingProduct: () => {
             dispatch(Action.actClearEditingProduct())

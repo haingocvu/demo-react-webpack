@@ -8,55 +8,12 @@ const actFetchProductsAsyn = () => {
     }
 }
 
-const actDeleteProduct = id => {
+const actAddProductAsyn = (product) => {
     return {
-        type: ActionType.DELETE_PRODUCT,
-        id
-    }
-}
-
-const actDeleteProductRequest = id => {
-    return dispatch => {
-        return callAPI('DELETE', `${Endpoints.PRODUCTS}/${id}`, null)
-            .then(res => {
-                //call dispatch
-                dispatch(actDeleteProduct(id))
-            }).catch(err => console.log(err))
-    }
-}
-
-const actAddProduct = product => {
-    return {
-        type: ActionType.ADD_PRODUCT,
+        type: ActionType.ADD_PRODUCT_ASYN,
         product
     }
 }
-
-const actAddProductRequest = product => {
-    return dispatch => {
-        return callAPI('POST', `${Endpoints.PRODUCTS}`, product)
-            .then(res => {
-                //call dispatch redux reducer
-                dispatch(actAddProduct(res.data))
-            }).catch(err => console.log(err))
-    }
-}
-
-// const actGetProductRequest = id => {
-//     return dispatch => {
-//         callAPI('GET', `${Endpoints.PRODUCTS}/${id}`, null)
-//             .then(res => {
-//                 dispatch(actSetEditingProductToStore(res.data))
-//             }).catch(err => console.log(err))
-//     }
-// }
-
-// const actSetEditingProductToStore = product => {
-//     return {
-//         type: ActionType.SET_EDITING_PRODUCT,
-//         product
-//     }
-// }
 
 const actSetEditingProductAsyn = id => {
     return {
@@ -65,20 +22,17 @@ const actSetEditingProductAsyn = id => {
     }
 }
 
-const actUpdateProduct = product => {
+const actUpdateProductAsyn = product => {
     return {
-        type: ActionType.EDIT_PRODUCT,
+        type: ActionType.UPDATE_PRODUCT_ASYN,
         product
     }
 }
 
-const actUpdateProductRequest = product => {
-    return dispatch => {
-        return callAPI('PUT', `${Endpoints.PRODUCTS}/${product.id}`, product)
-            .then(res => {
-                //call update product redux store
-                dispatch(actUpdateProduct(res.data))
-            }).catch(err => console.log(err))
+const actDeleteProductAsyn = id => {
+    return {
+        type: ActionType.DELETE_PRODUCT_ASYN,
+        id
     }
 }
 
@@ -102,8 +56,7 @@ const actClearAddingProduct = () => {
 }
 
 export {
-    actDeleteProductRequest,
-    actAddProductRequest, actUpdateProductRequest,
+    actAddProductAsyn, actDeleteProductAsyn,
     actSaveCurrentAddingProduct, actClearEditingProduct, actClearAddingProduct,
-    actSetEditingProductAsyn, actFetchProductsAsyn
+    actSetEditingProductAsyn, actFetchProductsAsyn, actUpdateProductAsyn
 };

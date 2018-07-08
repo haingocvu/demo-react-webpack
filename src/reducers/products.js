@@ -20,7 +20,7 @@ const products = (state = initialState, action) => {
             let product = action.product;
             state.push(product);
             return [...state];
-        case ActionType.EDIT_PRODUCT:
+        case ActionType.UPDATE_PRODUCT:
             index = findIndex(state, (product, index) => {
                 return product.id === action.product.id
             })
